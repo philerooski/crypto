@@ -12,6 +12,9 @@ class Cipher(object):
                 encrypted_message = encrypted_message + chr((index + shift) % 255)
             elif type(shift) == list:
                 encrypted_message = encrypted_message + chr((index + shift[i]) % 255)
+            elif type(shift) == str:
+                shift = ord(shift[i % len(shift)])
+                encrypted_message = encrypted_message + chr((index + shift) % 255)
         return encrypted_message
 
     def decrypt(self, ciphertext, shift):
@@ -22,6 +25,9 @@ class Cipher(object):
                 decrypted_message = decrypted_message + chr((index - shift) % 255)
             elif type(shift) == list:
                 decrypted_message = decrypted_message + chr((index - shift[i]) % 255)
+            elif type(shift) == str:
+                shift = ord(shift[i % len(shift)])
+                decrypted_message = decrypted_message + chr((index - shift) % 255)
         return decrypted_message
 
     def one_time_pad(self, message):
