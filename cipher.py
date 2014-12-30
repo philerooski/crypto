@@ -35,3 +35,14 @@ class Cipher(object):
         for letter in message:
             pad.append(r.randint(0, 255))
         return pad
+
+    def check_frequency(self, message):
+        dic = {}
+        for letter in message:
+            if dic.has_key(letter):
+                dic[letter] = dic[letter] + 1
+            else:
+                dic[letter] = 1
+        for key in dic.keys():
+            dic[key] = dic[key] / float(len(message))
+        return dic
